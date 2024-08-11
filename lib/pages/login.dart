@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cartasiapp/core/api_client.dart';
+import 'package:cartasiapp/pages/forgot_password.dart';
 import 'package:cartasiapp/pages/home.dart';
 import 'package:cartasiapp/provider/login_data.dart';
 import 'package:flutter/material.dart';
@@ -123,6 +124,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Login'),
       ),
       body: Form(
@@ -203,9 +205,29 @@ class _LoginState extends State<Login> {
                 const SizedBox(
                     // height: 20,
                     ),
-                const SizedBox(
+                SizedBox(
                   height: 50,
-                  child: Text("Lost password?"),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        const Text("forgot password?"),
+                        const SizedBox(width: 10),
+                        GestureDetector(
+                            child: const Text(
+                              "click here",
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgotPassword()),
+                              );
+                            })
+                      ],
+                    ),
+                  ),
                 ),
                 const Divider(
                   color: Colors.grey,

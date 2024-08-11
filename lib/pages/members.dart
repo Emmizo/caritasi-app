@@ -114,7 +114,7 @@ class _MembersState extends State<Members> {
                   },
                 );
               },
-              child: Icon(Icons.add),
+              child: const Icon(Icons.add),
             )
           : Container(),
     );
@@ -155,7 +155,7 @@ class _MemberCardState extends State<MemberCard> {
 
   @override
   Widget build(BuildContext context) {
-    void _showAlertDialog(String title, String message, bool isSuccess) {
+    void showAlertDialog(String title, String message, bool isSuccess) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -179,7 +179,7 @@ class _MemberCardState extends State<MemberCard> {
       );
     }
 
-    void _submitForm2() async {
+    void submitForm2() async {
       final SharedPreferences prefs = await _prefs;
       String? userData = prefs.getString('userData');
       List<dynamic> userDataListDynamic = jsonDecode(userData!);
@@ -199,17 +199,16 @@ class _MemberCardState extends State<MemberCard> {
 
       if (res['status'] == 200) {
         print(res);
-        _showAlertDialog(
+        showAlertDialog(
             'Success', "${widget.title} wishes ${res["msg"]}", true);
       } else {
-        _showAlertDialog(
-            'Error', "${widget.title} wishes ${res["msg"]}", false);
+        showAlertDialog('Error', "${widget.title} wishes ${res["msg"]}", false);
       }
       print(res);
       Navigator.pop(context);
     }
 
-    void _showAlertDialog3() {
+    void showAlertDialog3() {
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -229,7 +228,7 @@ class _MemberCardState extends State<MemberCard> {
                         status = 1;
                         //memberId = widget.id;
                       });
-                      _submitForm2();
+                      submitForm2();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -248,7 +247,7 @@ class _MemberCardState extends State<MemberCard> {
                         status = 2;
                         //memberId = widget.id;
                       });
-                      _submitForm2();
+                      submitForm2();
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -379,11 +378,11 @@ class _MemberCardState extends State<MemberCard> {
               children: <Widget>[
                 GestureDetector(
                   onTap: widget.role == 5 && widget.approval == "Wait"
-                      ? _showAlertDialog3
+                      ? showAlertDialog3
                       : widget.role == 4 && widget.approval == "Wait"
-                          ? _showAlertDialog3
+                          ? showAlertDialog3
                           : widget.role == 3 && widget.approval == "Wait"
-                              ? _showAlertDialog3
+                              ? showAlertDialog3
                               : null,
                   child: Text(
                     widget.approval,

@@ -242,4 +242,21 @@ class ApiClient {
       return e.response!.data;
     }
   }
+
+  Future<dynamic> forgotPassword(String email) async {
+    try {
+      FormData formData = FormData.fromMap({
+        "email": email,
+      });
+      Response response = await _dio.post(
+        '${Url.urlData}/forget-password-api',
+        data: formData,
+      );
+
+      // print(response);
+      return response.data;
+    } on DioError catch (e) {
+      return e.response!.data;
+    }
+  }
 }
