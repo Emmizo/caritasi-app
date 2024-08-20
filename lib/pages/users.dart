@@ -118,7 +118,9 @@ class _UsersState extends State<Users> {
                     lastName: member['last_name'],
                     email: member['email'],
                     centerName: member['center_name'] ?? "",
+                    roleName: member['role_name'] ?? "",
                     communityName: member['community_name'] ?? "",
+                    isActive: member['status'],
                   );
                 },
               ),
@@ -140,16 +142,21 @@ class UserCard extends StatelessWidget {
   final String lastName;
   final String email;
   final String centerName;
+  final String roleName;
   final String communityName;
+  final String isActive;
 
-  const UserCard(
-      {super.key,
-      required this.id,
-      required this.firstName,
-      required this.lastName,
-      required this.email,
-      required this.centerName,
-      required this.communityName});
+  const UserCard({
+    super.key,
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.centerName,
+    required this.roleName,
+    required this.communityName,
+    required this.isActive,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -160,15 +167,68 @@ class UserCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('ID: $id',
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            Text('Name: $firstName $lastName',
-                style: const TextStyle(fontSize: 16)),
-            Text('Email: $email', style: const TextStyle(fontSize: 16)),
-            Text('Center: $centerName', style: const TextStyle(fontSize: 16)),
-            Text('Community: $communityName',
-                style: const TextStyle(fontSize: 16)),
+            Row(
+              children: [
+                Text(
+                  firstName,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  lastName,
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  email,
+                  style: const TextStyle(fontSize: 16),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Centrale: $centerName',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    Text(
+                      'Community: $communityName',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(roleName),
+                    Text(
+                      isActive == "1" ? 'Active' : 'Deactive',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: isActive == "1" ? Colors.green : Colors.red,
+                      ),
+                      textAlign: TextAlign.right,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
       ),

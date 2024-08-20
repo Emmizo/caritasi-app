@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cartasiapp/core/api_client.dart';
+import 'package:cartasiapp/widget/bottom_navigator.dart';
 import 'package:cartasiapp/widget/header.dart';
 import 'package:cartasiapp/widget/left_drawer.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _SupportState extends State<Support> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   int role = 0;
-  int _selectedIndex = 3;
+  int _selectedIndex = 2;
   List<dynamic> membersData = [];
 
   void _onItemTapped(int index) {
@@ -70,7 +71,17 @@ class _SupportState extends State<Support> {
                   ),
                 ),
                 const Spacer(),
-                Text("Amount: ${data['amount']} Frw")
+                Text(
+                  "Amount: ${data['amount']} Frw",
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: data['statuses'] == 0
+                        ? Colors.blue
+                        : data['statuses'] == 1
+                            ? Colors.green
+                            : Colors.amber[700],
+                  ),
+                )
               ],
             ),
             const SizedBox(height: 8.0),
@@ -189,6 +200,10 @@ class _SupportState extends State<Support> {
                 : membersData.map((data) => buildListItem(data)).toList(),
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigator(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

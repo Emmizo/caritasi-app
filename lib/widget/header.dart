@@ -90,9 +90,9 @@ class _HeaderState extends State<Header> {
                     : widget.selectedIndex == 1
                         ? 'List of members'
                         : widget.selectedIndex == 2
-                            ? 'Communities'
+                            ? 'List of Supported members'
                             : widget.selectedIndex == 3
-                                ? 'List of Support'
+                                ? 'List of Supported Members'
                                 : widget.selectedIndex == 4
                                     ? 'List of Users'
                                     : "",

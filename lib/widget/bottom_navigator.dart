@@ -1,6 +1,6 @@
-import 'package:cartasiapp/pages/communities.dart';
 import 'package:cartasiapp/pages/home.dart';
 import 'package:cartasiapp/pages/members.dart';
+import 'package:cartasiapp/pages/support.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -32,7 +32,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
           ),
           BottomNavigationBarItem(
             icon: FaIcon(FontAwesomeIcons.userGroup),
-            label: 'Communities',
+            label: 'Support',
           )
         ],
         currentIndex: widget.selectedIndex,
@@ -56,7 +56,7 @@ class _BottomNavigatorState extends State<BottomNavigator> {
           } else if (index == 2) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Communities()),
+              MaterialPageRoute(builder: (context) => const Support()),
             );
           }
         });

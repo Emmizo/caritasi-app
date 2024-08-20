@@ -6,7 +6,6 @@ import 'package:cartasiapp/pages/users.dart';
 import 'package:cartasiapp/widget/bottom_navigator.dart';
 import 'package:cartasiapp/widget/header.dart';
 import 'package:cartasiapp/widget/left_drawer.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,6 +21,10 @@ class _HomeState extends State<Home> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   int _selectedIndex = 0;
   int role = 0;
+  String rolename = "";
+  String fullname = "";
+  String profile = "";
+  String url_ = "";
   List<dynamic> membersData = [];
   String users = "0";
   String members = "0";
@@ -48,6 +51,10 @@ class _HomeState extends State<Home> {
     List<Map<String, dynamic>> userDataList = List<Map<String, dynamic>>.from(
         userDataListDynamic.map((item) => item as Map<String, dynamic>));
     String? token = userDataList[0]['token'];
+    String fullname3 = userDataList[0]['user']['first_name'];
+    String rolename3 = userDataList[0]['user']['role_name'];
+    String profile3 = userDataList[0]['user']['profile_picture'] ?? "";
+    String url3 = userDataList[0]['base_url'];
     ApiClient apiClient = ApiClient();
     dynamic res = await apiClient.dashboard(token!);
 
@@ -58,6 +65,10 @@ class _HomeState extends State<Home> {
       members = results['data']['members'].toString();
       communities = results['data']['communities'].toString();
       centers = results['data']['centers'].toString();
+      fullname = fullname3;
+      rolename = rolename3;
+      profile = profile3;
+      url_ = url3;
     });
   }
 
@@ -87,9 +98,7 @@ class _HomeState extends State<Home> {
         scaffoldKey: _scaffoldKey,
         selectedIndex: _selectedIndex,
         onDataPassed: (data) {
-          setState(() {
-            // print(_dataFromHeader);
-          });
+          setState(() {});
         },
       ),
       drawer: const LeftDrawer(),
@@ -99,6 +108,10 @@ class _HomeState extends State<Home> {
         communities: communities,
         centers: centers,
         membersData: membersData,
+        fullname: fullname,
+        profile: profile,
+        rolename: rolename,
+        url_: url_,
       ),
       bottomNavigationBar: BottomNavigator(
         selectedIndex: _selectedIndex,
@@ -113,6 +126,10 @@ class Dashboard extends StatelessWidget {
   final String members;
   final String communities;
   final String centers;
+  final String fullname;
+  final String profile;
+  final String rolename;
+  final String url_;
   final List<dynamic> membersData;
 
   const Dashboard({
@@ -122,6 +139,10 @@ class Dashboard extends StatelessWidget {
     required this.communities,
     required this.centers,
     required this.membersData,
+    required this.fullname,
+    required this.profile,
+    required this.rolename,
+    required this.url_,
   });
 
   @override
@@ -129,7 +150,6 @@ class Dashboard extends StatelessWidget {
     // Extract the first 5 members data
     List<dynamic> subset =
         membersData.length > 5 ? membersData.sublist(0, 5) : membersData;
-
     return Container(
       color: const Color.fromARGB(255, 225, 222, 222),
       child: ListView(
@@ -137,30 +157,52 @@ class Dashboard extends StatelessWidget {
           Container(
             height: 300,
             padding: const EdgeInsets.all(16),
-            child: Card(
-              child: LineChart(
-                LineChartData(
-                  gridData: FlGridData(show: false),
-                  titlesData: FlTitlesData(show: true),
-                  borderData: FlBorderData(show: false),
-                  lineBarsData: [
-                    LineChartBarData(
-                      spots: [
-                        FlSpot(0, 32),
-                        FlSpot(1, 31),
-                        FlSpot(2, 30),
-                        FlSpot(3, 29),
-                        FlSpot(4, 32),
-                        FlSpot(5, 30),
-                        FlSpot(6, 33),
-                      ],
-                      isCurved: true,
-                      barWidth: 3,
-                      color: Colors.blue,
-                      dotData: FlDotData(show: true),
+            child: Container(
+              color: Colors.blue.shade900,
+              padding: EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  profile.isNotEmpty
+                      ? Container(
+                          width: 100.0, // Set the width you want
+                          height: 100.0, // Set the height you want
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle, // Circular shape
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26, // Shadow color
+                                blurRadius: 10.0, // Spread of the shadow
+                                offset: Offset(0, 5), // Position of the shadow
+                              ),
+                            ],
+                          ),
+                          child: ClipOval(
+                            child: Image.network(
+                              url_ + '/' + profile,
+                              fit: BoxFit
+                                  .cover, // Fit the image within the container
+                            ),
+                          ),
+                        )
+                      : const CircleAvatar(
+                          radius: 40,
+                          child: Icon(Icons.person, size: 40),
+                          backgroundColor: Colors.white,
+                        ),
+                  const SizedBox(height: 8),
+                  Text(
+                    fullname,
+                    style: const TextStyle(
+                      color: Colors.orange,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                  Text(
+                    rolename,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ],
               ),
             ),
           ),
