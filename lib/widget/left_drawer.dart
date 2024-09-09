@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cartasiapp/pages/home.dart';
+import 'package:cartasiapp/pages/income.dart';
 import 'package:cartasiapp/pages/login.dart';
 import 'package:cartasiapp/pages/members.dart';
 import 'package:cartasiapp/pages/support.dart';
@@ -123,7 +124,7 @@ class _LeftDrawerState extends State<LeftDrawer> {
                 ),
                 ListTile(
                   leading: const Icon(Icons.settings),
-                  title: const Text('Manage Members'),
+                  title: const Text('Manage Beneficiaries'),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -134,13 +135,13 @@ class _LeftDrawerState extends State<LeftDrawer> {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.person),
-                  title: const Text('Manage users'),
+                  leading: const Icon(Icons.money_sharp),
+                  title: const Text('Manage Grant'),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const Users(),
+                        builder: (context) => const Income(),
                       ),
                     );
                   },
@@ -153,6 +154,18 @@ class _LeftDrawerState extends State<LeftDrawer> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => const Support(),
+                      ),
+                    );
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.person),
+                  title: const Text('Manage users'),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Users(),
                       ),
                     );
                   },

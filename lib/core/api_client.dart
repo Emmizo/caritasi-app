@@ -243,6 +243,24 @@ class ApiClient {
     }
   }
 
+  Future<dynamic> listOfIncome(String token) async {
+    try {
+      Response response = await _dio.get(
+        '${Url.urlData}/list-income',
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      // print(response);
+      return response.data;
+    } on DioError catch (e) {
+      return e.response!.data;
+    }
+  }
+
   Future<dynamic> forgotPassword(String email) async {
     try {
       FormData formData = FormData.fromMap({

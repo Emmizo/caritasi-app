@@ -88,14 +88,16 @@ class _HeaderState extends State<Header> {
                 widget.selectedIndex == 0
                     ? 'Dashboard'
                     : widget.selectedIndex == 1
-                        ? 'List of members'
+                        ? 'List of Beneficiaries'
                         : widget.selectedIndex == 2
-                            ? 'List of Supported members'
+                            ? 'List of Supported Beneficiaries'
                             : widget.selectedIndex == 3
-                                ? 'List of Supported Members'
+                                ? 'List of Supported Beneficiaries'
                                 : widget.selectedIndex == 4
                                     ? 'List of Users'
-                                    : "",
+                                    : widget.selectedIndex == 5
+                                        ? "Income"
+                                        : "",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20.0,
