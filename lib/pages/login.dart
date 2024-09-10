@@ -16,30 +16,18 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final _formKey = GlobalKey<FormState>();
+  late Future<String> accessToken;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-  late Future<String> accessToken;
 
   @override
   void initState() {
     super.initState();
     // loginUsers();
     prefsData();
-  }
-
-  String? _validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter an email';
-    }
-    // Regular expression for basic email validation
-    final RegExp emailRegex =
-        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-    if (!emailRegex.hasMatch(value)) {
-      return 'Please enter a valid email';
-    }
-    return null;
   }
 
   prefsData() {
@@ -92,7 +80,8 @@ class _LoginState extends State<Login> {
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
 
       //if there is no error, get the user's accesstoken and pass it to HomeScreen
-      print(res[0]);
+      print("$res[0] new");
+
       if (res[0]['status'] == 200) {
         res is List;
 
@@ -117,6 +106,19 @@ class _LoginState extends State<Login> {
         ));
       }
     }
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter an email';
+    }
+    // Regular expression for basic email validation
+    final RegExp emailRegex =
+        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+    if (!emailRegex.hasMatch(value)) {
+      return 'Please enter a valid email';
+    }
+    return null;
   }
 
   @override

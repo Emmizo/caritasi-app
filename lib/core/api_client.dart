@@ -13,7 +13,7 @@ class ApiClient {
       // print(response);
       return response.data;
     } on DioError catch (e) {
-      return e.response!.data;
+      return e.response?.data ?? "Error: No response data";
     }
   }
 
