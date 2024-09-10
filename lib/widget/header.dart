@@ -92,12 +92,13 @@ class _HeaderState extends State<Header> {
                         : widget.selectedIndex == 2
                             ? 'List of Supported Beneficiaries'
                             : widget.selectedIndex == 3
-                                ? 'List of Supported Beneficiaries'
+                                ? 'List of Supported'
                                 : widget.selectedIndex == 4
                                     ? 'List of Users'
                                     : widget.selectedIndex == 5
-                                        ? "Income"
+                                        ? "Grant"
                                         : "",
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20.0,
