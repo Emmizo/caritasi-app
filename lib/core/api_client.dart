@@ -12,7 +12,7 @@ class ApiClient {
           await _dio.post('${Url.urlData}/login', data: formData);
       // print(response);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response?.data ?? "Error: No response data";
     }
   }
@@ -43,7 +43,7 @@ class ApiClient {
         throw Exception(
             'Failed to load user info with status code: ${response.statusCode}');
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       // Handle Dio errors or network errors
       if (e.response?.statusCode == 405) {
         // Specific handling for 405 errors
@@ -70,7 +70,7 @@ class ApiClient {
 
       // print(response);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -88,7 +88,7 @@ class ApiClient {
 
       // print(response);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -101,7 +101,7 @@ class ApiClient {
 
       // print(response);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -146,7 +146,7 @@ class ApiClient {
 
       print(response.data);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -175,7 +175,7 @@ class ApiClient {
 
       print(response.data);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -202,7 +202,7 @@ class ApiClient {
 
       // print(response);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -220,7 +220,7 @@ class ApiClient {
 
       // print(response);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -238,7 +238,7 @@ class ApiClient {
 
       // print(response);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -256,7 +256,7 @@ class ApiClient {
 
       // print(response);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }
@@ -273,7 +273,7 @@ class ApiClient {
 
       // print(response);
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return e.response!.data;
     }
   }

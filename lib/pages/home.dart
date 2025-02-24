@@ -178,7 +178,7 @@ class Dashboard extends StatelessWidget {
                           ),
                           child: ClipOval(
                             child: Image.network(
-                              url_ + '/' + profile,
+                              '$url_/$profile',
                               fit: BoxFit
                                   .cover, // Fit the image within the container
                             ),
@@ -186,8 +186,8 @@ class Dashboard extends StatelessWidget {
                         )
                       : const CircleAvatar(
                           radius: 40,
-                          child: Icon(Icons.person, size: 40),
                           backgroundColor: Colors.white,
+                          child: Icon(Icons.person, size: 40),
                         ),
                   const SizedBox(height: 8),
                   Text(

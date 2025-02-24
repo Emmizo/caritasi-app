@@ -235,7 +235,7 @@ class _LoginState extends State<Login> {
                   color: Colors.grey,
                 ),
                 const Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 30),
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 30),
                   child: Text(
                     "Is this your first time here?",
                     style: TextStyle(

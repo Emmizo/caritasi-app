@@ -843,7 +843,7 @@ class _FormModalState extends State<FormModal> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              '${widget.name}',
+              widget.name,
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),

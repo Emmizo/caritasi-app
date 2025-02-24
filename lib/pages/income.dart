@@ -240,7 +240,7 @@ class _IncomeState extends State<Income> with SingleTickerProviderStateMixin {
                                       ),
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "${amount} RWF",
+                                        "$amount RWF",
                                         style: TextStyle(
                                           fontSize: 8,
                                           fontWeight: FontWeight.bold,
