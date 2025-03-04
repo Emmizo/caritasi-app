@@ -197,17 +197,6 @@ class _IncomeState extends State<Income> with SingleTickerProviderStateMixin {
                                 // Status
                                 Row(
                                   children: [
-                                    // Text(
-                                    //   incomeData[index]['statuses'] == 0
-                                    //       ? "Pending"
-                                    //       : "Completed",
-                                    //   style: TextStyle(
-                                    //     color:
-                                    //         incomeData[index]['statuses'] == 0
-                                    //             ? Colors.blue
-                                    //             : Colors.green,
-                                    //   ),
-                                    // ),
                                     const Spacer(),
                                     Text(
                                       "amount: ${incomeData[index]['calculated_amount']}",
