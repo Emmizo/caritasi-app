@@ -49,3 +49,4 @@ app.*.map.json
 /DerivedData/
 # Xcode SPM cache
 xcuserdata/
+.qodo

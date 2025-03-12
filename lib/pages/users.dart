@@ -128,10 +128,6 @@ class _UsersState extends State<Users> {
           ],
         ),
       ),
-      // bottomNavigationBar: BottomNavigator(
-      //   selectedIndex: _selectedIndex,
-      //   onItemTapped: _onItemTapped,
-      // ),
     );
   }
 }

@@ -204,7 +204,7 @@ class _MemberCardState extends State<MemberCard> {
       } else {
         showAlertDialog('Error', "${widget.title} wishes ${res["msg"]}", false);
       }
-      print(res);
+
       Navigator.pop(context);
     }
 
