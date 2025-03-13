@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cartasiapp/core/api_client.dart';
 import 'package:cartasiapp/widget/header.dart';
 import 'package:cartasiapp/widget/left_drawer.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -84,7 +85,9 @@ class _UsersState extends State<Users> {
         selectedIndex: _selectedIndex,
         onDataPassed: (data) {
           setState(() {
-            // Handle data passed from Header if needed
+            if (kDebugMode) {
+              print("clicked");
+            }
           });
         },
       ),

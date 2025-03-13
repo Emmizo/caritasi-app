@@ -37,7 +37,6 @@ class _HeaderState extends State<Header> {
 
     if (userData != null && userData.isNotEmpty) {
       try {
-        // Decode the JSON string into a List<dynamic>
         List<dynamic> userDataListDynamic = jsonDecode(userData);
 
         // Cast the List<dynamic> to List<Map<String, dynamic>>
@@ -63,7 +62,6 @@ class _HeaderState extends State<Header> {
         }
       } catch (e) {
         // Handle the decoding error appropriately
-        print("Error decoding JSON: $e");
       }
     }
   }

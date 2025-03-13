@@ -26,16 +26,14 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     super.initState();
-    // loginUsers();
+    loginUsers();
     prefsData();
   }
 
   prefsData() {
     _prefs.then((SharedPreferences prefs) {
       String? userData = prefs.getString('userData');
-      // print("Data user info: $userData");
-      // prefs.remove("userData");
-      // prefs.remove('token');
+
       if (userData != null && userData.isNotEmpty) {
         try {
           List<dynamic> userDataMap = jsonDecode(userData);
@@ -51,12 +49,7 @@ class _LoginState extends State<Login> {
               ),
             );
           }
-          // else {
-          //   Navigator.push(context,
-          //       MaterialPageRoute(builder: (context) => const Login()));
-          // }
         } catch (e) {
-          print("Error decoding JSON: $e");
           // Handle the decoding error appropriately
         }
       }
